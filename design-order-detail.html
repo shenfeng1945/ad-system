@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>定制设计详情</title>
+  <link rel="stylesheet" href="./vendors/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/weui.min.css">
+  <link rel="stylesheet" href="./style/common.css">
+</head>
+<style>
+  .page{padding:0 .6rem;}
+  h3{font-size:.75rem;}
+  .gray-size{color:rgb(102,102,102);}
+  .page .banner h3,
+  .page .main-title h3,
+  .page .fu-title h3{padding-top:.9rem;}
+  .page .banner p,
+  .page .main-title p,
+  .page .fu-title p{margin-top:.8rem;font-size:.7rem;}
+  .page .banner{padding-bottom:.9rem;}
+  .page .main-title{padding-bottom:.9rem;}
+  .page .fu-title{padding-bottom:.9rem;}
+  .page .requirement{padding-bottom:.9rem;}
+  .page .requirement{margin-top:1.25rem;}
+  .page .requirement li{margin-top:.5rem;}
+  .page .user-msg{margin-top:1rem;}
+  .page .user-msg >div{display: flex;align-items: center;margin-bottom:.5rem;}
+  .page .user-msg p{width:4.6rem;font-size:.7rem;}
+  .page .user-msg span{flex:1;font-size:.7rem;}
+</style>
+<body>
+  <div class="page">
+    <div class="banner bottom-line">
+      <h3>Banner设计</h3>
+      <p class="gray-size">价格： <span class="gray-size">￥50.00</span></p>
+      <p class="gray-size">尺寸： <span class="gray-size">750px-300px</span></p>
+    </div>
+    <div class="main-title bottom-line">
+      <h3>主标题</h3>
+      <p class="gray-size">汽车用品超级品类</p>
+    </div>
+    <div class="fu-title bottom-line">
+      <h3>副标题</h3>
+      <p class="gray-size">跨店3件7折，满198减100</p>
+    </div>
+    <div class="requirement bottom-line">
+      <h3>需求描述：</h3>
+      <ul>
+        <li class="gray-size">1.<span class="gray-size">用于活动，希望整体色调是明亮色调</span></li>
+        <li class="gray-size">2.<span class="gray-size">要着力表现活动感，促销感</span></li>
+      </ul>
+    </div>
+    <div class="user-msg">
+      <div>
+        <p>联系人</p>
+        <span class="gray-size">刘筱筱</span>
+      </div>
+      <div>
+        <p>邮箱</p>
+        <span class="gray-size">100999@qq.com</span>
+      </div>
+      <div>
+        <p>手机号</p>
+        <span class="gray-size">184241312</span>
+      </div>
+      <div>
+        <p>付款时间</p>
+        <span class="gray-size">2017-12-31 12:00:00</span>
+      </div>
+    </div>
+  </div> 
+</body>
+<script src="./js/rem.js"></script>
+<script src="./vendors/js/jquery-2.1.4.js"></script>
+<script src="./vendors/js/fastclick.js"></script>
+<script src="./vendors/js/jquery-weui.js"></script>
+<script>
+    $(function() {
+      FastClick.attach(document.body);
+    });
+</script>
+</html>

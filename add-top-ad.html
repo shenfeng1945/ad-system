@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>飘窗广告</title>
+  <link rel="stylesheet" href="./vendors/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/layui.css">
+  <link rel="stylesheet" href="./style/common.css">
+  <link rel="stylesheet" href="./vendors/css/cropper.css">
+</head>
+<style>
+  .page{background:rgb(243,243,243);height:100%;}
+  .add-ad{background:#fff;padding:.6rem;}
+  .add-ad .add{width:17.55rem;height:4.75rem;border:1px dotted #999;display: flex;justify-content: center;align-items: center;position:relative;}
+  .add-ad .add #demo1{position: absolute;left:0;right:0;bottom:0;top:0;width:100%;height:100%;z-index:1;}
+  .add-ad .opacity .icon-12-12,.add-ad .opacity span{opacity: 0;}
+  .link{margin-top:.6rem;}
+  .link input{padding:.1rem .6rem;width:100%;height:2.2rem;}
+  .que{}
+  .que button{width:16.15rem;height:1.95rem;border-radius: 1.95rem;color:#fff;background:rgb(51,70,155);margin-left:1.3rem;margin-top:.9rem;}
+  .new-page{margin:.85rem .6rem 0;position:relative;width:17.5rem;height:17.5rem;} 
+  .new-page .links{background:#fff;}
+  .new-page .content-msg{position:absolute;top:3.6rem;left:50%;transform:translateX(-50%);display: none;}
+  .new-page .content-msg.active{display: block;}
+  .new-page .content-msg img{width:6.65rem;height:5.4rem;}
+  .new-page .content-msg p{font-size:.6rem;color:rgb(102,102,102);text-align: center;margin-top:.75rem;}
+  .popover{position:fixed;right:0;left:0;z-index:3;top:0;bottom:0;display: none;background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAAA3NCSVQICAjb4U/gAAAABlBMVEXMzMz////TjRV2AAAACXBIWXMAAArrAAAK6wGCiw1aAAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAABFJREFUCJlj+M/AgBVhF/0PAH6/D/HkDxOGAAAAAElFTkSuQmCC')}
+  .popover.active{display: block;}
+  .popover #natureImg{position: absolute;top:0;right:0;left:0;bottom:3.2rem;max-width:100%;height:91%;}
+  .popover button{position: absolute;bottom:.6rem;z-index:4;}
+</style>
+<body>
+  <div class="page">
+    <div class="add-ad">
+      <div class="add">
+         <input id="test1" class="weui-uploader__input" type="file" accept="image/*">
+         <img class="icon-12-12" src="./images/icon_add.png" alt="">  
+         <span class="size12-gray1">添加顶部广告</span>
+         <img id="demo1">
+      </div>
+    </div>
+    <div class="link">
+      <input type="text" placeholder="请输入您的推广地址(www.xxx)">
+    </div>
+    <div class="que">
+      <button>确定</button>
+    </div>
+    <div class="new-page">
+      <object class="links" data="javascript:;" frameborder="0" height="100%" width="100%" style="position: absolute;height:100%;width:100%;"></object>
+      <div class="content-msg active">
+        <img src="./images/img_zanwuneirong.png" alt="">
+        <p>暂时木有内容呀~~</p>
+      </div>
+    </div>
+  </div> 
+  <div class="popover">
+    <!-- <img id="natureImg" style="display: none;"> -->
+    <button class="setting-button">确定</button>
+  </div>
+</body>
+<script src="./js/rem.js"></script>
+<script src="./vendors/js/jquery-2.1.4.js"></script>
+<script src="./vendors/js/fastclick.js"></script>
+<script src="./vendors/js/jquery-weui.js"></script>
+<script src="./vendors/js/layui.js"></script>
+<script src="./vendors/js/cropper.js"></script>
+<script>
+    $(function() {
+      FastClick.attach(document.body);
+      //函数节流
+      let timer = null
+      var cropper = null
+      var width = document.documentElement.clientWidth
+      var height = document.documentElement.clientHeight
+      $('iframe').attr('width',width)
+
+      var demo1 = document.querySelector('#demo1')
+      $('.link input').on('input',throttle)
+      $('.popover button').on('click',function(){
+        demo1.removeAttribute('src')
+         var a = cropper.getCroppedCanvas().toDataURL()//获取裁剪后图片的URL
+         demo1.setAttribute('src',a)
+         $('.popover').removeClass('active')
+         $('.add-ad .add').addClass('opacity')
+      })
+      test1.onchange = function(e){
+        var file = e.target.files[0]
+        var reader = new FileReader()//异步读取计算机上的文件
+        if(file){
+          $('.popover img').remove()
+          reader.onload = function(e){
+            $('.popover').addClass('active')
+            var string = `<img src=${e.target.result} id="natureImg">`
+            $('.popover').prepend(string)
+            var natureImg = document.querySelector('#natureImg')
+            natureImg.onload = function(){
+            cropper = new Cropper(natureImg,{
+              aspectRatio:3.66667/1,
+              autoCropArea:0.9578,
+              scalable:false,
+              movabel:false,
+              cropBoxResizable:false,
+              crop:function(e){
+                }
+            })
+            }
+          }
+        }
+        reader.readAsDataURL(file)
+      }
+      // uploadImg() 
+      function uploadImg(){
+        layui.use('upload', function(){
+          var $ = layui.jquery,upload = layui.upload;
+          var uploadInst = upload.render({
+             elem: '#test1',
+             before: function(obj){
+                obj.preview(function(index, file, result){
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                    $('.add-ad .add').addClass('opacity')
+                })
+              }
+          })
+        })
+      }
+      function throttle(){
+        let value = this.value
+          if(value!==''){
+            $('.content-msg').removeClass('active')
+          }else{
+            $('.content-msg').addClass('active')
+          }
+          if(timer){window.clearTimeout(timer)}
+          timer = setTimeout(function(){
+             timer = null
+             $('.links').attr('data','//'+value)
+          },1500)
+      }
+    });
+</script>
+</html>

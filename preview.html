@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>预览</title>
+  <link rel="stylesheet" href="./vendors/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/weui.min.css">
+  <link rel="stylesheet" href="./style/common.css">
+</head>
+<style>
+  .page{}
+  .page .top-ad{position:fixed;top:0;right:0;left:0;height:3rem;display: none;}
+  .page .top-ad.active{display: block;}
+  .page .top-ad img{width:100%;height:100%;}
+  .page .content{margin-top:4.1rem;padding:0 .6rem;}
+  .page .content::after{content:'';display:block;height:3rem;}
+  .page .content h2{font-size:.8rem;}
+  .page .content h3{font-size:.7rem;margin-top:.4rem;}
+  .page .content p{font-size:.7rem;line-height: 1.2rem;margin-top:.4rem;color:rgb(102,102,102);}
+  .page .content img{width:100%;}
+  .page .content .article-time{font-size:.6rem;color:rgb(102,102,102);}
+  .page .content .article-author{font-size:.6rem;color:rgb(102,102,102);margin-left:.3rem;}
+  .page .bottom-ad{position:fixed;bottom:0;right:0;left:0;height:3rem;display: none;z-index:1;}
+  .page .bottom-ad.active{display: block;}
+  .page .bottom-ad a{display: block;}
+  .page .bottom-ad img{width:100%;height:100%;}
+  .page .bottom-ad .close{position:absolute;left:.6rem;top:50%;transform:translateY(-50%);width:1.2rem;height:1.2rem;z-index:2;}
+</style>
+<body>
+  <div class="page">
+    <div class="top-ad active">
+      <a href="javascript:;">
+        <img class="ad" alt="">
+      </a>
+    </div>
+    <div class="content">
+      <h2></h2>
+      <div>
+        <span class="article-time"></span>
+        <span class="article-author"></span>
+      </div>
+      <!-- <hr> -->
+      <!-- <p>冬日打边炉，是为取暖之道。一口温热的食物下肚，恰似所有的纷扰散尽，留下的是温暖与从容。实际上，打边炉吃火锅，精髓在汤底，再好的食材，没有在浓郁美味的汤汁中滚过，依旧乏善可陈。无论是麻辣锅，还是清汤锅各自所呈现的味道不同，个性亦迥异。</p> -->
+      <!-- <h3>震惊全世界，火星人吃了都说好</h3> -->
+      <!-- <p>火锅底料是麻辣火锅的精髓。从操作层面而言，那种挑逗味蕾的各种滋味的确和锅底的调味料有关，而且调至其味用料之多，并非随意搭配就能完成。郫县豆瓣、干辣椒八角、三奈、桂皮、草果、香叶、香草、公丁香、大蒜、生姜等等，各种香料汇集而成，在猪骨、牛骨一起熬制的锅中，肆意发挥各自独有的微妙气息。大体如此，但往细里说，无论是红汤还是白汤，都因底料的差异，所呈现的味道也有细微不同。例如，皇城老妈的红汤系列有全牛油和川西菜籽油之分，用全牛油的红汤底，回味悠长；而菜籽油所呈现出来的则是麻辣分明，带有清新的香气；还有一些红汤中则加入了贵州鸡心辣椒，所呈现的辣味更为浓烈醇厚。</p> -->
+      <!-- <img src="./images/img_zhanweitu04.png" alt=""> -->
+      <!-- <p>冬日打边炉，是为取暖之道。一口温热的食物下肚，恰似所有的纷扰散尽，留下的是温暖与从容。实际上，打边炉吃火锅，精髓在汤底，再好的食材，没有在浓郁美味的汤汁中滚过，依旧乏善可陈。无论是麻辣锅，还是清汤锅各自所呈现的味道不同，个性亦迥异。</p> -->
+    </div>
+    <div class="bottom-ad active">
+      <a href="javascript:;">
+        <img class="ad" alt="">
+      </a>
+        <img class="close" alt="">
+    </div>
+  </div> 
+</body>
+<script src="./js/rem.js"></script>
+<script src="./vendors/js/jquery-2.1.4.js"></script>
+<script src="./vendors/js/fastclick.js"></script>
+<script src="./vendors/js/jquery-weui.js"></script>
+<script>
+    $(function() {
+      var start 
+      FastClick.attach(document.body);
+      $('.bottom-ad .close').on('click',function(){
+        $('.bottom-ad').removeClass('active')
+      })
+      // $(window).on('scroll',function(){
+      //   if($('body').scrollTop()>scroll){
+      //      $('.top-ad').removeClass('active')
+      //   }else{
+      //      $('.top-ad').addClass('active')
+      //   }
+      //   scroll = $('body').scrollTop()
+      // })
+      $(window).on('touchstart',function(e){
+        starty = e.originalEvent.changedTouches[0].pageY
+        start = starty
+      })
+      $(window).on('touchmove',function(e){
+        starty = e.originalEvent.changedTouches[0].pageY
+        if(start - starty >0){
+          $('.top-ad').removeClass('active')
+        }else{
+          $('.top-ad').addClass('active')
+        }
+      })
+      var data = {
+         "topAd":{"src":"./images/img_zhanweitu02.png","link":"#"},
+         "bottomAd":{"src":"./images/img_zhanweitu02.png","link":"#"},
+         "mainHead":'美食侦探：火锅底料里的“文章”揭秘',
+         "createTime":"2017-12-05",
+         "author":"刘筱筱",
+         "content":[
+          //  1:正文，2:图片 3：图片模版 4：分割线 5：二级标题
+           {"type":4},//分割线
+           {"type":1,'data':"冬日打边炉，是为取暖之道。一口温热的食物下肚，恰似所有的纷扰散尽，留下的是温暖与从容。实际上，打边炉吃火锅，精髓在汤底，再好的食材，没有在浓郁美味的汤汁中滚过，依旧乏善可陈。无论是麻辣锅，还是清汤锅各自所呈现的味道不同，个性亦迥异。"},//正文
+           {"type":5,"data":"震惊全世界，火星人吃了都说好"},//二级标题
+           {"type":1,"data":"火锅底料是麻辣火锅的精髓。从操作层面而言，那种挑逗味蕾的各种滋味的确和锅底的调味料有关，而且调至其味用料之多，并非随意搭配就能完成。郫县豆瓣、干辣椒八角、三奈、桂皮、草果、香叶、香草、公丁香、大蒜、生姜等等，各种香料汇集而成，在猪骨、牛骨一起熬制的锅中，肆意发挥各自独有的微妙气息。大体如此，但往细里说，无论是红汤还是白汤，都因底料的差异，所呈现的味道也有细微不同。例如，皇城老妈的红汤系列有全牛油和川西菜籽油之分，用全牛油的红汤底，回味悠长；而菜籽油所呈现出来的则是麻辣分明，带有清新的香气；还有一些红汤中则加入了贵州鸡心辣椒，所呈现的辣味更为浓烈醇厚。"},
+           {"type":2,"data":"./images/img_zhanweitu04.png"},//图片
+           {"type":1,'data':"冬日打边炉，是为取暖之道。一口温热的食物下肚，恰似所有的纷扰散尽，留下的是温暖与从容。实际上，打边炉吃火锅，精髓在汤底，再好的食材，没有在浓郁美味的汤汁中滚过，依旧乏善可陈。无论是麻辣锅，还是清汤锅各自所呈现的味道不同，个性亦迥异。"},//正文
+           {"type":3,"data":""},//图片模版
+         ]
+      }
+      var a =JSON.stringify(data)
+      console.log(JSON.parse(a))
+      apply(JSON.parse(a))
+      function apply(data){
+         if(data.topAd.src){//顶部广告
+           $('.top-ad a').attr('href',data.topAd.link)
+           $('.top-ad img').attr('src',data.topAd.src)
+         }
+         if(data.bottomAd.src){//底部广告
+           $('.bottom-ad a').attr('href',data.bottomAd.link)
+           $('.bottom-ad .ad').attr('src',data.bottomAd.src)
+           $('.bottom-ad .close').attr('src','./images/close.png')//固定的x
+         }
+         if(data.mainHead!==''){//文章标题
+           $('.content h2').html(data.mainHead)
+         }
+         if(data.createTime!==''){
+           $('.content .article-time').html(data.createTime)
+         }
+         if(data.author!==''){
+           $('.content .article-author').html(data.author)
+         }
+         var content = data.content
+         $.each(content,function(i,d){
+           var string = ''
+           if(d.type===1){
+              string = `<p>${d.data}</p>`
+           }else if(d.type===2){
+             string = `<img src=${d.data}>`
+           }else if(d.type===3){
+             string = ''
+           }else if(d.type===4){
+             string = `<hr>`
+           }else if(d.type===5){
+             string = `<h3>${d.data}</h3>`
+           }
+           $('.content').append(string)
+         })
+      }
+    });
+</script>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>设置</title>
+  <link rel="stylesheet" href="./vendors/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/weui.min.css">
+  <link rel="stylesheet" href="./style/common.css">
+</head>
+<style>
+  .page{background:rgb(243,243,243);height:100%;}
+  .page .main1,.main2,.main3{background:#fff;margin-bottom:.6rem;}
+  .page .main1 a,.main2 >div a,.main3>div a{display: flex;justify-content: space-between;padding:.75rem .6rem;align-items: center;}
+  .page .main1 a>div,.main2>div a>div,.main3 >div a>div{display: flex;align-items: center;}
+  .page .icon{margin-right:.5rem;}
+  .page p{font-size:.75rem;}
+  .page .signout{margin-top:1.55rem;}
+</style>
+<body>
+  <div class="page">
+    <div class="main1">
+      <a href="/revise-phone.html">
+      <div>
+        <img class="icon-12-15 icon" src="./images/icon_shouji.png" alt="">
+        <p>修改手机号</p>
+      </div>
+      <img class="icon-dakai" src="./images/icon_dakai.png" alt="">
+      </a>
+    </div>
+    <div class="main2 middle-line">
+      <div class="vip">
+        <a href="/vip-protocol.html">
+         <div>
+            <img class="icon-12-15 icon" src="./images/icon_xieyi.png" alt="">
+            <p>会员协议</p>
+        </div>
+         <img class="icon-dakai" src="./images/icon_dakai.png" alt="">
+        </a>
+      </div>
+      <div class="design">
+        <a href="/design-protocol.html">
+          <div>
+             <img class="icon-12-15 icon" src="./images/icon_dingzhixieyi.png" alt="">
+             <p>定制设计协议</p>
+          </div>
+           <img class="icon-dakai" src="./images/icon_dakai.png" alt="">
+        </a>
+        </div>
+    </div>
+    <div class="main3 middle-line">
+        <div class="feedback">
+          <a href="/feedback.html">
+            <div>
+               <img class="icon-14-15 icon" src="./images/icon_fankui.png" alt="">
+               <p>体验反馈</p>
+            </div>
+             <img class="icon-dakai" src="./images/icon_dakai.png" alt="">
+          </a>
+          </div>
+          <div class="about">
+            <a href="/about-us.html">
+              <div>
+                 <img class="icon-18-13 icon" src="./images/icon_women.png" alt="">
+                 <p>关于我们</p>
+              </div>
+               <img class="icon-dakai" src="./images/icon_dakai.png" alt="">
+            </a>
+            </div> 
+    </div>
+    <div class="signout">
+      <button class="setting-button">退出</button>
+    </div>
+  </div> 
+</body>
+<script src="./js/rem.js"></script>
+<script src="./vendors/js/jquery-2.1.4.js"></script>
+<script src="./vendors/js/fastclick.js"></script>
+<script src="./vendors/js/jquery-weui.js"></script>
+<script>
+    $(function() {
+      FastClick.attach(document.body);
+    });
+</script>
+</html>

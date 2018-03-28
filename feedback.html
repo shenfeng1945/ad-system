@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>体验反馈</title>
+  <link rel="stylesheet" href="./vendors/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/weui.min.css">
+  <link rel="stylesheet" href="./style/common.css">
+</head>
+<style>
+  .page{background:rgb(243,243,243);height:100%;}
+  .page .input-content{padding:.6rem .6rem 0;display: flex;flex-direction: column;}
+  .page .input-content #content{width:100%;padding:.6rem;}
+  .page p{background:#fff;text-align: right;padding-right:.6rem;font-size:.65rem;color:rgb(153,153,153);padding-bottom:.5rem;}
+  .page .submit{margin-top:2.25rem;}
+</style>
+<body>
+ <div class="page">
+   <div class="input-content">
+     <textarea name="" id="content" cols="30" rows="10" maxlength="140" placeholder="有话不说憋着~~"></textarea>
+     <p>
+       <span class="input-nums" style="color:inherit;">0</span>/140
+     </p>
+   </div>
+   <div class="submit">
+     <button class="setting-button">提交</button>
+   </div>
+ </div> 
+</body>
+<script src="./js/rem.js"></script>
+<script src="./vendors/js/jquery-2.1.4.js"></script>
+<script src="./vendors/js/fastclick.js"></script>
+<script src="./vendors/js/jquery-weui.js"></script>
+<script>
+    $(function() {
+      FastClick.attach(document.body);
+      $('#content').on('input',function(){
+        let length = this.value.length
+        $('.input-nums').html(length)
+      })
+      $('.submit button').on('click',function(){
+        if($('#content').val()===''){
+          $.toptip('内容不可为空','error')
+          return
+        }
+        $.ajax({
+          type:'POST',
+          url:'',
+          data:{xxx:$('#content').val()},
+          success:function(data){
+             if(data.code == 200){
+               $.toast('提交成功!','success',function(){
+                //  跳转上一页
+                console.log(1)
+               })
+             }
+          }
+        })
+      })
+    });
+</script>
+</html>

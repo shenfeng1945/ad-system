@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>投放广告</title>
+  <link rel="stylesheet" href="./vendors/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/weui.min.css">
+  <link rel="stylesheet" href="./style/common.css">
+  <link rel="stylesheet" href="./style/throw-ad.css">
+</head>
+<body>
+  <div class="page">
+    <header class="middle-line">
+      <div class="position">
+        <span class="name">投放展位</span>
+        <span class="select1"></span>
+        <img src="./images/icon_dakai.png" alt="">
+      </div>
+      <div class="time">
+        <span class="name">投放时间</span>
+        <input type="text" id="picker">
+        <img src="./images/icon_dakai.png" alt="">
+      </div>
+    </header>
+    <main class="middle-line">
+      <div class="head">
+        <span>标题</span>
+        <input type="text" placeholder="请输入标题">
+      </div>
+      <div class="link">
+        <span>广告链接</span>
+        <input type="text" placeholder="请输入文章的URL链接">
+      </div>
+    </main>
+    <div class="add-ad">
+      <div class="add">
+        <div>
+          <div>
+            <img src="./images/icon_add.png" alt="">
+          </div>
+          <p>添加广告</p>
+        </div>
+      </div>
+      <p>图片要求：建议上传尺寸100×100</p>
+    </div>
+    <footer>
+      <div class="pay">￥<span>50.00</span></div>
+      <div class="submit">确认提交</div>
+    </footer>
+  </div>  
+  <div class="popover-wrapper">
+    <div class="popover">
+      <ul>
+        <!-- <li>精选推荐</li>
+        <li>相关推荐</li> -->
+      </ul>
+      <div class="cancel">
+        取消
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./js/rem.js"></script>
+<script src="./vendors/js/jquery-2.1.4.js"></script>
+<script src="./vendors/js/fastclick.js"></script>
+<script src="./vendors/js/jquery-weui.js"></script>
+<script>
+    $(function() {
+      FastClick.attach(document.body);
+      $('.position .select1,.position img').on('click',function(){
+        $('.popover-wrapper').addClass('active')
+      })
+      $('.popover-wrapper .cancel').on('click',function(){
+        $('.popover-wrapper').removeClass('active')
+      })
+      $('.popover ul').on('click','li',function(e){
+        let index = $(e.currentTarget).index()
+        $('.position .select1').html($('.popover ul li').eq(index).html())
+        $('.popover-wrapper').removeClass('active')
+      })
+      o = {
+        position:['精选推荐','相关推荐'],
+        time:['2018/01/01至2017/01/07','2018/01/08至2017/01/14','2018/01/15至2017/01/21','2018/01/22至2017/01/28','2018/01/29至2017/02/03','2018/02/04至2017/02/10','2018/02/11至2017/02/17'],
+        getPosition:function(){
+          $.ajax({
+            url:"",
+            type:"GET",
+            success:function(data){
+              o.position = data.result[0] 
+            }
+          })
+        },
+        getTime:function(){
+          $.ajax({
+            url:"",
+            type:"GET",
+            success:function(data){
+              o.time = data.result[0] 
+            }
+          })
+        }
+      }
+      $("#picker").picker({
+        title: "选择投放时间",
+        cols: [
+         {
+          textAlign: 'center',
+          values: o.time
+         }
+        ]
+      });
+      o.position.forEach(function(item){
+        var string = `<li>${item}</li>`
+        $('.popover ul').append(string)
+      })
+    });
+</script>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>绑定账户</title>
+  <link rel="stylesheet" href="./vendors/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/weui.min.css">
+  <link rel="stylesheet" href="./style/common.css">
+</head>
+<style>
+  .page{}
+  .page h1{font-size:1.1rem;font-family: 'PingFang-SC-Medium';text-align: center;margin-top:3.45rem;}
+  .page .phone{text-align: center;margin-top:4rem;}
+  .page .phone input{border-bottom:1px solid rgb(51,70,155);padding:.2rem 0;width:15.75rem;}
+  .page .comfirm{width:15.75rem;display: flex;margin:0 auto;margin-top:1.75rem;}
+  .page .comfirm input{border-bottom:1px solid;flex:1;}
+  .page .comfirm .getcode{width:3.7rem;height:1.125rem;color:#fff;background:rgb(228,159,55);border-radius: 5px;display: flex;justify-content: center;align-items: center;font-size:.6rem;}
+  .page .comfirm .getcode.active{background:gray;}
+  .page .protocol{width:15.75rem;margin:0 auto;margin-top:.9rem;display: flex;align-items: center;}
+  .page .que{display: flex;justify-content: center;margin-top:3rem;}
+  .page .que button{padding:.6rem 5.6rem;color:#fff;background:rgb(51,70,155);border-radius: 1.95rem;}
+  .popover-wrapper{position:fixed;top:0;right:0;left:0;bottom:0;background:rgba(0,0,0,.3);display: none;}
+  .popover-wrapper.active{display: block;}
+  .popover-wrapper .popover{position:absolute;top:8.35rem;left:50%;transform:translateX(-50%);background:#fff;width:14rem;padding:0 1.9rem;text-align: center;}
+  .popover-wrapper h3{font-size:.9rem;font-family: 'PingFang-SC-Medium';margin-top:1.15rem;}
+  .popover p:last-child{font-size:.9rem;color:rgb(51,70,155);margin-top:.65rem;margin-bottom:.7rem;}
+  .popover::after{bottom:30%;}
+</style>
+<body>
+  <div class="page">
+    <h1>绑定VIP会员后需充值VIP年费</h1>
+    <div class="phone">
+      <input type="text" placeholder="手机号码">
+    </div>
+    <div class="comfirm">
+      <input type="text" placeholder="短信验证码">
+      <div class="getcode">
+          获取验证码
+      </div>
+    </div>
+    <div class="protocol">
+      <input type="checkbox">
+      <span>我同意</span>
+      <a href="/vip-protocol.html" style="color:rgb(51,70,155)">《会员协议》</a>
+    </div>
+    <div class="que">
+       <button>确定</button>
+    </div>
+  </div>
+  <div class="popover-wrapper">
+    <div class="popover bottom-line">
+      <h3>绑定成功</h3>
+      <p class="size14-gray" style="margin-top:.5rem;padding-bottom:.6rem;">终于等到你，你是我们第<span class="rank size12-gray">88</span>名VIP会员</p>
+      <p class="close">确定</p>
+    </div>
+  </div> 
+</body>
+<script src="./js/rem.js"></script>
+<script src="./vendors/js/jquery-2.1.4.js"></script>
+<script src="./vendors/js/fastclick.js"></script>
+<script src="./vendors/js/jquery-weui.js"></script>
+<script>
+    $(function() {
+      FastClick.attach(document.body);
+      $('.popover .close').on('click',function(){
+        $('.popover-wrapper').removeClass('active')
+      })
+      $('.que button').on('click',function(){
+        var pattern = /^((1[3,5,8][0-9])|(14[5,7])|(17[0,6,7,8])|(19[7]))\d{8}$/
+        if($('.phone input').val() === ''){
+          $.toptip('手机不能为空!','error')
+          return
+        }
+        if($('.comfirm input').val() === ''){
+          $.toptip('验证码不能为空!','error')
+          return
+        }
+        if(!$('.protocol input').is(':checked')){
+          $.toptip('请同意会员协议','error')
+          return
+        }
+        if(!$('.phone input').val().match(pattern)){
+          $.toptip('请输入合法的手机号','error')
+          return
+        }
+        $.ajax({
+          type:'GET',
+          url:'./temporary/getCodes.json',
+          success:function(data){
+            if(data.code==200){
+              $('.popover-wrapper').addClass('active').find('.rank').html('11')
+              //绑定成功后，member-center.json里的isbinding变为true
+            }
+          } 
+        })
+      })
+      $('.comfirm .getcode').on('click',getCode)
+      $('.popover .close').on('click',function(){$('.popover-wrapper').removeClass('active');window.location.href=document.referrer})
+      function getCode(){
+        var pattern = /^((1[3,5,8][0-9])|(14[5,7])|(17[0,6,7,8])|(19[7]))\d{8}$/
+        $('.comfirm .getcod3').off('click',getCode)
+        var phone = $('.phone input').val()
+        if(phone===''){$.toptip('手机号不能为空','error');return}
+        if(!phone.match(pattern)){$.toptip('请输入合法的手机号','error');return}
+        count('.comfirm .getcode')
+        $.ajax({
+          type:'GET',
+          url:'./temporary/getCodes.json',//获取验证码，并发送短信
+          success:function(data){
+            if(data.code==200){
+              console.log(data.result.code)
+            }
+          }
+
+        })
+      }
+      function count(container){
+        let time = 60
+        let colck = setInterval(function(){
+          $(container).html(time+'s')
+          $(container).addClass('active')
+          time--
+          if(time<0){
+            clearInterval(colck)
+            $(container).removeClass('active')
+            $(container).html('重新获取')
+            $(container).on('click',getCode)
+          }
+        },1000)
+      }
+    });
+</script>
+</html>

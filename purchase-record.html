@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>购买记录</title>
+  <link rel="stylesheet" href="./vendors/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/weui.min.css">
+  <link rel="stylesheet" href="./style/common.css">
+</head>
+<style>
+  .page{height:100%;}
+  .page ul li{display: flex;padding: .8rem .6rem .6rem;justify-content: space-between;align-items: flex-end;}
+  .page ul li .prices{font-size:.75rem;font-family: 'PingFang-SC-Medium';color:rgb(228,159,55);}
+  .page ul li .price{font-size:1.2rem;color:inherit;line-height: 1.55rem;}
+</style>
+<body>
+  <div class="page">
+    <ul>
+      <li class="bottom-line">
+        <div>
+          <p class="phone size15">12345678911</p>
+          <p class="time size12-gray">2016-01-01 18:55:11</p>
+        </div>
+        <div class="prices">
+          ￥<span class="price">500</span>
+        </div>
+      </li>
+      <li class="bottom-line">
+        <div>
+          <p class="phone size15">12345678911</p>
+          <p class="time size12-gray">2016-01-01 18:55:11</p>
+        </div>
+        <div class="prices">
+          ￥<span class="price">500</span>
+        </div>
+      </li>
+    </ul>
+  </div> 
+</body>
+<script src="./js/rem.js"></script>
+<script src="./vendors/js/jquery-2.1.4.js"></script>
+<script src="./vendors/js/fastclick.js"></script>
+<script src="./vendors/js/jquery-weui.js"></script>
+<script>
+    $(function() {
+      FastClick.attach(document.body);
+    });
+</script>
+</html>

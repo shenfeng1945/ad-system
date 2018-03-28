@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>编辑文章</title>
+  <link rel="stylesheet" href="./vendors/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/weui.min.css">
+  <link rel="stylesheet" href="./style/common.css">
+  <link rel="stylesheet" href="./style/edit-article.css">
+  <link rel="stylesheet" href="./vendors/css/cropper.css">
+</head>
+<body>
+ <div class="page">
+   <div class="topbar">
+     <button class="preview">预览</button>
+     <button class="save">保存</button>
+     <button class="publish">发布</button>
+   </div>
+   <div class="add-top-ad">
+     <div class="add">
+       <img class="icon-12-12" src="./images/icon_add.png" alt="">  
+       <span>添加顶部广告</span>
+    </div>
+   </div>
+   <div class="add-bottom-ad">
+     <div class="add">
+       <img class="icon-12-12" src="./images/icon_add.png" alt="">  
+       <span>添加底部广告</span>
+     </div>
+   </div>
+   <div class="article-head">
+     <textarea name="" id="" cols="20" rows="2" maxlength="40" placeholder="请输入文章标题"></textarea>
+     <span class="size12-gray1 use-length">0</span><span class="size12-gray1">/40</span>
+   </div>
+   <div class="contents">
+     <ul>
+       <li>
+         <div class="icons">
+           <div class="up-down">
+             <img class="down" src="./images/icon_movedown.png" alt="">
+             <img class="up" src="./images/icon_moveup.png" alt="">
+           </div>
+           <div class="delete">
+             <img src="./images/icon_delete.png" alt="">
+           </div>
+         </div>
+           <textarea name="" id="" cols="30" rows="8" placeholder="请输入正文"></textarea>
+           <div class="select-icon">
+             <div class="line"></div>
+              <img class="normal" src="./images/icon_tianjia_default.png" alt="">
+              <img class="clicked" src="./images/icon_tianjia_expand.png" alt="">
+              <div class="line"></div>
+           </div>
+           <div class="select-content">
+              <ol class="triangle">
+                <li>
+                  <img src="./images/icon_text.png" alt="">
+                  <span>文字</span>
+                </li>
+                <li>
+                  <img src="./images/icon_picture.png" alt="">
+                  <span>图片</span>
+                </li>
+                <li>
+                  <img src="./images/icon_stencil.png" alt="">
+                  <span>图片模版</span>
+                </li>
+                <li>
+                  <img src="./images/icon_dividingline.png" alt="" style="height:0.175rem;margin:.4rem 0;">
+                  <span>分割线</span>
+                </li>
+                <li>
+                  <img src="./images/icon_title.png" alt="">
+                  <span>二级标题</span>
+                </li>
+              </ol>
+            </div>
+       </li>
+       <li>
+          <div class="icons">
+              <div class="up-down">
+                <img class="down" src="./images/icon_movedown.png" alt="">
+                <img class="up" src="./images/icon_moveup.png" alt="">
+              </div>
+              <div class="delete">
+                <img src="./images/icon_delete.png" alt="">
+              </div>
+          </div>
+          <div class="add-img">
+               <div class="add">
+                  <input class="weui-uploader__input upload" type="file" accept="image/*">
+                  <div class="add-msg">
+                    <img class="icon-12-12" src="./images/icon_add.png" alt="">  
+                    <span>添加图片</span>
+                  </div>
+                  <img class="image" alt="">
+               </div>
+               <div class="cropper">
+                 <button class="setting-button cropper-img">确定</button>
+               </div>
+            </div>
+              <div class="select-icon">
+                <div class="line"></div>
+                 <img class="normal" src="./images/icon_tianjia_default.png" alt="">
+                 <img class="clicked" src="./images/icon_tianjia_expand.png" alt="">
+                 <div class="line"></div>
+              </div>
+              <div class="select-content">
+                <ol class="triangle">
+                  <li>
+                    <img src="./images/icon_text.png" alt="">
+                    <span>文字</span>
+                  </li>
+                  <li>
+                    <img src="./images/icon_picture.png" alt="">
+                    <span>图片</span>
+                  </li>
+                  <li>
+                    <img src="./images/icon_stencil.png" alt="">
+                    <span>图片模版</span>
+                  </li>
+                  <li>
+                      <img src="./images/icon_dividingline.png" alt="" style="height:0.175rem;margin:.4rem 0;">
+                    <span>分割线</span>
+                  </li>
+                  <li>
+                    <img src="./images/icon_title.png" alt="">
+                    <span>二级标题</span>
+                  </li>
+                </ol>
+           </div>
+       </li>
+       <li>
+          <div class="icons">
+              <div class="up-down">
+                <img class="down" src="./images/icon_movedown.png" alt="">
+                <img class="up" src="./images/icon_moveup.png" alt="">
+              </div>
+              <div class="delete">
+                <img src="./images/icon_delete.png" alt="">
+              </div>
+          </div>
+          <div class="secondary-head">
+               <div class="add">
+                 <textarea name="" id="" cols="20" rows="2" maxlength="40" placeholder="请输入二级标题"></textarea>
+                 <span class="size12-gray1 use-length">0</span><span class="size12-gray1">/40</span>
+               </div>
+            </div>
+              <div class="select-icon">
+                <div class="line"></div>
+                 <img class="normal" src="./images/icon_tianjia_default.png" alt="">
+                 <img class="clicked" src="./images/icon_tianjia_expand.png" alt="">
+                 <div class="line"></div>
+              </div>
+              <div class="select-content">
+                <ol class="triangle">
+                  <li>
+                    <img src="./images/icon_text.png" alt="">
+                    <span>文字</span>
+                  </li>
+                  <li>
+                    <img src="./images/icon_picture.png" alt="">
+                    <span>图片</span>
+                  </li>
+                  <li>
+                    <img src="./images/icon_stencil.png" alt="">
+                    <span>图片模版</span>
+                  </li>
+                  <li>
+                      <img src="./images/icon_dividingline.png" alt="" style="height:0.175rem;margin:.4rem 0;">
+                    <span>分割线</span>
+                  </li>
+                  <li>
+                    <img src="./images/icon_title.png" alt="">
+                    <span>二级标题</span>
+                  </li>
+                </ol>
+           </div>
+       </li>
+       <li>
+        <div class="icons">
+          <div class="up-down">
+            <img class="down" src="./images/icon_movedown.png" alt="">
+            <img class="up" src="./images/icon_moveup.png" alt="">
+          </div>
+          <div class="delete">
+            <img src="./images/icon_delete.png" alt="">
+          </div>
+        </div>
+        <div class="cut-line">
+           <div class="add middle-line1">
+           </div>
+        </div>
+          <div class="select-icon">
+            <div class="line"></div>
+             <img class="normal" src="./images/icon_tianjia_default.png" alt="">
+             <img class="clicked" src="./images/icon_tianjia_expand.png" alt="">
+             <div class="line"></div>
+          </div>
+          <div class="select-content">
+            <ol class="triangle">
+              <li>
+                <img src="./images/icon_text.png" alt="">
+                <span>文字</span>
+              </li>
+              <li>
+                <img src="./images/icon_picture.png" alt="">
+                <span>图片</span>
+              </li>
+              <li>
+                <img src="./images/icon_stencil.png" alt="">
+                <span>图片模版</span>
+              </li>
+              <li>
+                  <img src="./images/icon_dividingline.png" alt="" style="height:0.175rem;margin:.4rem 0;">
+                <span>分割线</span>
+              </li>
+              <li>
+                <img src="./images/icon_title.png" alt="">
+                <span>二级标题</span>
+              </li>
+            </ol>
+         </div>
+      </li>
+     </ul>
+   </div>
+ </div> 
+ <div class="popover-wrapper">
+    <div class="popover">
+      <h2>免费体验到期提醒</h2>
+      <p>您免费推广次数已达到上线，开通VIP(500元)可享受更多推广权益</p>
+      <div class="list">
+        <img src="./images/icon_fawen.png" alt="">
+        <span>不限制次数推广发文</span>
+      </div>
+      <div class="list">
+        <img src="./images/icon_moban.png" alt="">
+        <span>使用特价图片模版</span>
+      </div>
+      <div class="list">
+        <img src="./images/icon_toufang.png" alt="">
+        <span>投放广告</span>
+      </div>
+      <div class="que">
+        <button>确定</button>
+      </div>
+      <div class="think">
+        <button>在想想</button>
+      </div>
+    </div>
+ </div>
+ <div class="publish-wrapper">
+   <div class="name">
+     发布渠道
+     <img src="./images/close1.png" alt="" style="width:1rem;height:1rem;padding:.2rem;">
+   </div>
+   <ul class="path">
+     <li>
+       <div>
+         <img src="./images/share.png" alt="">
+       </div>
+       <span>微信好友</span>
+     </li>
+     <li>
+       <div>
+         <img src="./images/friends.png" alt="">
+       </div>
+       <span>微信朋友圈</span>
+     </li>
+     <li class="copy-link" data-clipboard-text="">
+       <div>
+         <img src="./images/copy.png" alt="">
+       </div>
+       <span>复制链接</span>
+     </li>
+   </ul>
+ </div>
+</body>
+<script src="./js/rem.js"></script>
+<!-- <script src="./vendors/js/jquery-2.1.4.js"></script> -->
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="./vendors/js/fastclick.js"></script>
+<script src="./vendors/js/cropper.js"></script>
+<script src="./vendors/js/jquery-weui.js"></script>
+<script src="./js/edit-article.js"></script>
+<script src="./vendors/js/clipboard.js"></script>
+<script>
+    $(function() {
+      FastClick.attach(document.body);
+      
+      $('.add-top-ad .add').on('click',function(){
+        window.location.href = '/add-top-ad.html'
+      })
+      $('.add-bottom-ad .add').on('click',function(){
+        window.location.href = '/add-bottom-ad.html'
+      })
+      $('.topbar .preview').on('click',function(){
+        window.location.href = '/preview.html'
+      })
+      $('.contents ul').on('click','li .select-icon img',function(e){
+        //  let index = $(e.currentTarget).closest('li').index()
+        $(this).closest('.select-icon').toggleClass('active')
+      })
+      //文章标题输入限制
+      $('.article-head textarea').on('input',function(){
+        let length = this.value.length
+        $(this).siblings('.use-length').html(length)
+      })
+      $('.contents ul').on('input','.secondary-head textarea',function(){
+        let length = this.value.length
+        $(this).siblings('.use-length').html(length)
+      })
+      // var height = $('.publish-wrapper').innerHeight()
+      
+      $('.publish').on('click',function(){
+        // $('.publish-wrapper').css({
+        //   "transform":'translateY('+(-1)*height+'px)'
+        // })
+          $('.publish-wrapper').toggleClass('active')
+      })
+      $('.publish-wrapper .name img').on('click',function(){
+        // $('.publish-wrapper').css({
+        //   "transform":'translateY(0px)'
+        // })
+          $('.publish-wrapper').toggleClass('active')
+      })
+      $('.copy-link').attr('data-clipboard-text',window.location.href)
+      $('.publish-wrapper .copy-link').on('click',function(){
+         var clipboard = new Clipboard('.copy-link');
+         clipboard.on('success', function(e) {
+           e.clearSelection();
+          $('.publish-wrapper').toggleClass('active')
+         });
+      })
+      
+     
+    });
+</script>
+</html>

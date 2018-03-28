@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>定制设计订单</title>
+  <link rel="stylesheet" href="./vendors/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/weui.min.css">
+  <link rel="stylesheet" href="./style/common.css">
+</head>
+<style>
+  .page {
+    background: rgb(243, 243, 243);
+    padding: .6rem .6rem 0;
+    height: 100%;
+  }
+
+  .page ul {}
+
+  .page ul a {
+    background: #fff;
+    margin-bottom: .6rem;
+    border-radius: 2px;
+    padding: .9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+</style>
+
+<body>
+  <div class="page">
+    <ul>
+      <li>
+        <a href="/design-order-detail.html">
+          <div class="title">
+            <p style="font-size:.75rem;">Banner设计</p>
+            <p class="size12-gray">2017-12-31 12:00:00</p>
+          </div>
+          <div class="money">
+            <span style="font-family: 'PingFang-SC-Medium';">￥</span>
+            <span style="font-size:1.25rem;font-family: 'PingFang-SC-Medium';">50.00</span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="/design-order-detail.html">
+          <div class="title">
+            <p style="font-size:.75rem;">宣传单设计</p>
+            <p class="size12-gray">2017-12-31 12:00:00</p>
+          </div>
+          <div class="money">
+            <span style="font-family: 'PingFang-SC-Medium';">￥</span>
+            <span style="font-size:1.25rem;font-family: 'PingFang-SC-Medium';">50.00</span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="/design-order-detail.html">
+          <div class="title">
+            <p style="font-size:.75rem;">Banner设计</p>
+            <p class="size12-gray">2017-12-31 12:00:00</p>
+          </div>
+          <div class="money">
+            <span style="font-family: 'PingFang-SC-Medium';">￥</span>
+            <span style="font-size:1.25rem;font-family: 'PingFang-SC-Medium';">50.00</span>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</body>
+<script src="./js/rem.js"></script>
+<script src="./vendors/js/jquery-2.1.4.js"></script>
+<script src="./vendors/js/fastclick.js"></script>
+<script src="./vendors/js/jquery-weui.js"></script>
+<script>
+  $(function () {
+    FastClick.attach(document.body);
+  });
+</script>
+
+</html>

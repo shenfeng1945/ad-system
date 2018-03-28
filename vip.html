@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>VIP会员</title>
+  <link rel="stylesheet" href="./vendors/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/weui.min.css">
+  <link rel="stylesheet" href="./style/common.css">
+</head>
+<style>
+  .page{background:rgb(243,243,243);height:100%;padding:.6rem .6rem 0;}
+  .page .main1{background:#fff;border-radius: 5px;}
+  .page .main1 .total-msg{padding-left:.95rem;padding-top:.9rem;}
+  .page .main1 .prompt{padding-left:1rem;display: flex;}
+  .page .main1 .prompt .record{font-size:.6rem;color:rgb(228,159,55);margin-left:.75rem;}
+  .page .main1 .renewals{margin-top:1.75rem;padding-bottom:1.9rem;}
+  .page .main2{background:#fff;border-radius: 5px;margin-top:.6rem;}
+  .page .main2 h2{font-family: 'PingFang-SC-Medium';font-size:1rem;margin-left:.9rem;padding-top:1.35rem;}
+  .page .main2 ul{margin-left:1.15rem;padding-bottom:1.6rem;}
+  .page .main2 ul li{display: flex;align-items: center;margin-top:1.15rem;}
+  .page .main2 ul li img{width:2.2rem;height:2.2rem;margin-right:.6rem;}
+</style>
+<body>
+  <div class="page">
+    <div class="main1">
+      <p class="total-msg size15-gray">累计发文</p>
+      <p style="font-size:.6rem;text-align: center;margin-top:.4rem;">
+        <span class="total-num" style="font-size:2.15rem;font-family:'PingFang-SC-Medium';">126</span>
+        篇
+      </p>
+      <div class="prompt">
+         <p class="size12-gray">提示：VIP有效期到<span class="deadline size12-gray">2017-12-31</span></p>
+         <a href="/purchase-record.html" class="record">购买记录</a>
+      </div>
+      <div class="renewals">
+        <button class="setting-button">立即续费</button>
+      </div>
+    </div>
+    <div class="main2">
+      <h2>VIP特权</h2>
+      <ul>
+        <li>
+          <img src="./images/icon_fawen.png" alt="">
+          <span>每天不限制发文次数</span>
+        </li>
+        <li>
+          <img src="./images/icon_moban.png" alt="">
+          <span>特价图片模版免费用</span>
+        </li>
+        <li>
+          <img src="./images/icon_toufang.png" alt="">
+          <span>投放广告</span>
+        </li>
+      </ul>
+    </div>
+  </div> 
+</body>
+<script src="./js/rem.js"></script>
+<script src="./vendors/js/jquery-2.1.4.js"></script>
+<script src="./vendors/js/fastclick.js"></script>
+<script src="./vendors/js/jquery-weui.js"></script>
+<script>
+    $(function() {
+      FastClick.attach(document.body);
+    });
+</script>
+</html>

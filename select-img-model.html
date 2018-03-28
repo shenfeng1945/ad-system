@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>选择图片模版</title>
+  <link rel="stylesheet" href="./vendors/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/weui.min.css">
+  <link rel="stylesheet" href="./style/common.css">
+  <link rel="stylesheet" href="./style/select-img-model.css">
+</head>
+
+<body>
+  <div class="page">
+    <div class="container">
+      <div class="topbar">
+        <div class="list-item">
+          <a class="active" href="#">最新</a>
+          <a href="javascript:;">餐饮/美食</a>
+          <a href="javascript:;">商业/金融</a>
+          <a href="javascript:;">美容/时尚</a>
+          <a href="javascript:;">教育</a>
+          <a href="javascript:;">旅游/度假</a>
+          <a href="javascript:;">科学/技术</a>
+          <a href="javascript:;">健康/医疗</a>
+          <a href="javascript:;">体育</a>
+          <a href="javascript:;">其它</a>
+        </div>
+      </div>
+      <div class="icon">
+        <img class="down" src="./images/icon_moban_zhankai.png" alt="">
+      </div>
+    </div>
+    <div class="popover-wrapper">
+      <div class="popover">
+        <div class="select-head">
+          <span>选择模版类别</span>
+          <div class="icon">
+            <img class="up" src="./images/icon_moban_zhedie.png" alt="">
+          </div>
+        </div>
+        <div class="select-content">
+          <a class="active" href="#">最新</a>
+          <a href="javascript:;">餐饮/美食</a>
+          <a href="javascript:;">商业/金融</a>
+          <a href="javascript:;">美容/时尚</a>
+          <a href="javascript:;">教育</a>
+          <a href="javascript:;">旅游/度假</a>
+          <a href="javascript:;">科学/技术</a>
+          <a href="javascript:;">健康/医疗</a>
+          <a href="javascript:;">体育</a>
+          <a href="javascript:;">其它</a>
+        </div>
+      </div>
+    </div>
+    <ul class="model-list">
+      <!-- <li>
+        <a href="/edit-img-model.html">
+         <img src="./images/img_zhanweitu1.png" alt="">
+         <p>
+           <span class="name">寻梦环游记11</span>
+           <span class="price">￥3.00</span>
+         </p>
+        </a>
+      </li>
+      <li>
+        <a href="/edit-img-model.html">
+          <img src="./images/img_zhanweitu1.png" alt="">
+          <p>
+            <span class="name">寻梦环游记11</span>
+            <span class="price">￥3.00</span>
+          </p>
+        </a>
+      </li>
+      <li>
+        <a href="/edit-img-model.html">
+          <img src="./images/img_zhanweitu1.png" alt="">
+          <p>
+            <span class="name">寻梦环游记11</span>
+            <span class="price">￥3.00</span>
+          </p>
+        </a>
+      </li>
+      <li>
+        <a href="/edit-img-model.html">
+          <img src="./images/img_zhanweitu1.png" alt="">
+          <p>
+            <span class="name">寻梦环游记11</span>
+            <span class="price">￥3.00</span>
+          </p>
+        </a>
+      </li> -->
+    </ul>
+  </div>
+</body>
+<script src="./js/rem.js"></script>
+<script src="./vendors/js/jquery-2.1.4.js"></script>
+<script src="./vendors/js/fastclick.js"></script>
+<script src="./vendors/js/jquery-weui.js"></script>
+<script>
+  $(function () {
+    FastClick.attach(document.body);
+    ajax(0)
+  });
+  $('.container .icon,.popover .icon').on('click',function(){
+    $('.popover-wrapper').toggleClass('active')
+  })
+  $('.list-item').on('click','a',function(){
+    var index = $(this).index()
+    $(this).addClass('active').siblings('a').removeClass('active')
+    ajax(index)
+  })
+  $('.select-content').on('click','a',function(){
+    var index = $(this).index()
+    if(index>=3){
+        $('.topbar').scrollLeft(87+(index-3)*75)
+    }else{
+        $('.topbar').scrollLeft(0)
+    }
+    $('.popover-wrapper').toggleClass('active')
+    $('.list-item a').eq(index).addClass('active').siblings('a').removeClass('active')
+    ajax(index)
+  })
+  function ajax(i){
+    let xhr = new XMLHttpRequest()
+    xhr.open("GET",`./temporary/select-img-model.json?index=${i}`)
+    xhr.send()
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === 4){
+        if(xhr.status>=200 && xhr.status<400){
+          var object = JSON.parse(xhr.response)
+          var result = object.data[i]
+          append(result)
+        }
+      }
+    }
+  }
+  function append(result){
+    $('.model-list li').remove()
+    result.forEach(function(item){
+      var string = `
+      <li>
+        <a href="/edit-img-model.html?id=${item.id}">
+          <img src="${item.img}" alt="">
+          <p>
+            <span class="name">${item.name}</span>
+            <span class="price">￥${item.price}</span>
+          </p>
+        </a>
+      </li>
+      `
+      $('.model-list').append(string)
+    })
+  }
+</script>
+
+</html>

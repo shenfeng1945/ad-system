@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>投放广告</title>
+  <link rel="stylesheet" href="./vendors/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/weui.min.css">
+  <link rel="stylesheet" href="./style/common.css">
+</head>
+<style>
+  .page {
+    height: 100%;
+    background: rgb(243, 243, 243);
+    padding: .6rem .6rem 0 .6rem;
+  }
+
+  .page ul {}
+
+  .page ul li {
+    background: #fff;
+    margin-bottom: .6rem;
+    border-radius: 5px;
+  }
+
+  .page ul li .time-money {
+    padding: .7rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .page ul li .time-money .time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .page ul li .time-money .time span:first-child {
+    margin-right: .6rem;
+  }
+  .page ul li .content{
+    padding:.8rem 1.2rem .8rem .9rem; 
+  }
+  .page ul li .content .msg{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+     overflow: hidden;
+  }
+  .page ul li .content .throw-time{
+    display: flex;
+    margin-top:.3rem;
+  }
+  .pay-money,.pay-money span{font-family: 'PingFang-SC-Medium';color:rgb(228,159,55);}
+</style>
+
+<body>
+  <div class="page">
+    <ul>
+      <li>
+        <div class="bottom-line time-money">
+          <p class="time">
+            <span class="size14">付款时间</span>
+            <span class="pay-time size14">2017-12-11 12:00</span>
+          </p>
+          <p class="pay-money size14">￥
+            <span class="size14">50.00</span>
+          </p>
+        </div>
+        <div class="content">
+          <p class="size14 msg">我们知道在移动支付的前期，为了抢用户，大家都在拼命推出免费服务，但我们的资金还不足。</p>
+          <div class="throw-time">
+            <p class="size12-gray" style="margin-right:.3rem;">投放时间:</p>
+            <p class="size12-gray">
+              <span class="size12-gray">2017-12-31</span>至
+              <span class="size12-gray">2017-12-18</span>
+            </p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</body>
+<script src="./js/rem.js"></script>
+<script src="./vendors/js/jquery-2.1.4.js"></script>
+<script src="./vendors/js/fastclick.js"></script>
+<script src="./vendors/js/jquery-weui.js"></script>
+<script>
+  $(function () {
+    FastClick.attach(document.body);
+  });
+</script>
+
+</html>

@@ -1,0 +1,7 @@
+{"code":200,"result":[
+  {"id":"201801","img":"./images/img_zhanweitu04.png","type":{"align":"center center","color":"red yellow","size":".8 .65"}},
+  {"id":"201802","img":"./images/img_zhanweitu04.png","type":{"align":"left center","color":"maroon purple","size":".75 .7"}},
+  {"id":"201803","img":"./images/img_zhanweitu04.png","type":{"align":"right center","color":"#ff00ff green","size":".8 .7"}},
+  {"id":"201804","img":"./images/img_zhanweitu04.png","type":{"align":"center left","color":"olive aqua","size":".85 .65"}},
+  {"id":"201805","img":"./images/img_zhanweitu04.png","type":{"align":"center right","color":"orange coral","size":".9 .65"}}
+]}

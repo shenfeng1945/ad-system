@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>更多问题</title>
+  <link rel="stylesheet" href="./vendors/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/weui.min.css">
+  <link rel="stylesheet" href="./style/common.css">
+</head>
+<style>
+  .page{}
+  .page h3{font-size:.75rem;}
+  .page ul li{padding:.75rem .6rem;}
+  .page ul .head{display: flex;justify-content: space-between;align-items: center;}
+  .page li .answer{display: none;}
+  .page li.active .answer{display: block;}
+  .page li .icon-dakai{display: block;} 
+  .page li .icon-down{display: none;} 
+  .page li.active .icon-dakai{display: none;} 
+  .page li.active .icon-down{display: block;} 
+  .page .answer p{font-size:.7rem;color:rgb(102,102,102);margin-top:.7rem;}
+</style>
+<body>
+  <div class="page">
+    <ul>
+    </ul>
+  </div> 
+</body>
+<script src="./js/rem.js"></script>
+<script src="./vendors/js/jquery-2.1.4.js"></script>
+<script src="./vendors/js/fastclick.js"></script>
+<script src="./vendors/js/jquery-weui.js"></script>
+<script>
+    $(function() {
+      FastClick.attach(document.body);
+      $('ul').on('click','li',function(e){
+        let index = $(e.currentTarget).index()
+        $('ul li').eq(index).toggleClass('active')
+      })
+      $.ajax({
+        type:'GET',
+        url:'./temporary/more-question.json',
+        success:(data)=>{
+          if(data.code==200){
+            $.each(data.result,(i,d)=>{
+              var string = ` <li class="bottom-line">
+                               <div class="head">
+                                   <h3>${d.question}</h3>
+                                   <img class="icon-dakai" src="./images/icon_dakai.png" alt="">
+                                   <img class="icon-down" src="./images/icon_moban_zhankai.png" alt="">
+                               </div>
+                               <div class="answer">
+                                  <p>${d.answer}</p>
+                               </div>
+                              </li>`
+              $('ul').append(string)
+            })
+          }
+        }
+      })
+    });
+</script>
+</html>

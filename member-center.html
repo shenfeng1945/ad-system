@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>上映平台广告</title>
+  <link rel="stylesheet" href="./vendors/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/weui.min.css">
+  <link rel="stylesheet" href="./style/common.css">
+  <link rel="stylesheet" href="./style/member-center.css">
+</head>
+
+<body>
+  <div class="page">
+    <div class="user">
+      <div class="user-img">
+        <img alt="">
+      </div>
+      <div class="user-name">
+        <p class="size15">
+          <span class="name" style="font-size:.75rem;"></span>
+          <span class="vip">VIP</span>
+        </p>
+        <p class="size14-gray phone"></p>
+      </div>
+      <div class="binding">
+        <button class="bangding">绑定</button>
+        <button class="xufei">续费</button>
+      </div>
+    </div>
+    <div class="content1">
+      <ul>
+        <li class="bottom-line">
+          <a href="/vip.html" style="position:relative;">
+            <div>
+              <img class="icon" src="./images/icon_vip.png" alt="" style="height:.7rem;">
+              <span class="size15">VIP会员</span>
+            </div>
+            <span class="remainDays"></span>
+            <img class="dakai" src="./images/icon_dakai.png" alt="">
+          </a>
+        </li>
+        <li class="bottom-line">
+          <a href="/design-order.html">
+            <div>
+              <img class="icon" src="./images/icon_wenzhang.png" alt="" style="width:0.675rem;">
+              <span class="size15">定制设计订单</span>
+            </div>
+            <img class="dakai" src="./images/icon_dakai.png" alt="">
+          </a>
+        </li>
+        <li>
+          <a href="/throw-ad-list.html">
+            <div>
+              <img class="icon" src="./images/icon_guangao.png" alt="">
+              <span class="size15">投放广告</span>
+            </div>
+            <img class="dakai" src="./images/icon_dakai.png" alt="">
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="content2">
+      <ul>
+        <li class="bottom-line">
+          <a href="/my-card.html">
+            <div>
+              <img class="icon" src="./images/icon_kajuan.png" alt="">
+              <span class="size15">我的卡券</span>
+            </div>
+            <img class="dakai" src="./images/icon_dakai.png" alt="">
+          </a>
+        </li>
+        <li>
+          <a href="/saved-article.html">
+            <div>
+              <img class="icon" src="./images/icon_wenzhang.png" alt="">
+              <span class="size15">保存的文章</span>
+            </div>
+            <img class="dakai" src="./images/icon_dakai.png" alt="">
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="setting">
+      <ul>
+        <li>
+          <a href="/setting.html">
+            <div>
+              <img class="icon" src="./images/icon_shezhi.png" alt="" style="height:.675rem;">
+              <span class="size15">设置</span>
+            </div>
+            <img class="dakai" src="./images/icon_dakai.png" alt="">
+          </a>
+        </li>
+      </ul>
+    </div>
+    <footer class="tabs">
+      <ul>
+        <li>
+          <a href="/">
+            <img class="normal" src="./images/icon_shouye.png" alt="" style="width:1.3rem;height:1.15rem;">
+            <!-- <img class="blue" src="./images/icon_blue_shouye.png" alt="" style="width:1.3rem;height:1.15rem;"> -->
+            <span>首页</span>
+          </a>
+        </li>
+        <li>
+          <a href="/design.html">
+            <img class="normal" src="./images/icon_gray_sheji.png" alt="">
+            <!-- <img class="blue" src="./images/icon_blue_sheji.png" alt=""> -->
+            <span>定制设计</span>
+          </a>
+        </li>
+        <li>
+          <a href="/member-center.html">
+            <!-- <img class="normal" src="./images/icon_gray_wode.png" alt="" style="width:.95rem;height:1.05rem;"> -->
+            <img class="blue" src="./images/icon_biue_wode.png" alt="" style="width:.95rem;height:1.05rem;">
+            <span style="color:rgb(51,70,155);">我的</span>
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </div>
+</body>
+<script src="./js/rem.js"></script>
+<script src="./vendors/js/jquery-2.1.4.js"></script>
+<script src="./vendors/js/fastclick.js"></script>
+<script src="./vendors/js/jquery-weui.js"></script>
+<script>
+  $(function () {
+    FastClick.attach(document.body);
+    $('.binding .bangding').on('click',function(){window.location.href = '/binding-account.html'})
+  });
+  // 获取用户信息，头像和openId，根据openId调用某个接口，获得该用户是否是会员及会员相关信息。
+  $.ajax({//根据openId获取用户信息
+    url:'./temporary/member-center.json',
+    type:'GET',
+    success:function(data){
+      if(data.code==200){
+        $('.user-img img').attr('src',data.result.img_head)
+        $('.user-name .name').html(data.result.nickName)
+        $('.user-name .phone').html(data.result.phone)
+        if(data.result.isBinding){
+          $('.user').addClass('active')
+          $('.content1 ul li:first-child').addClass('active')
+          if(data.result.remainDays<30){
+             $('.content1 ul li:first-child .remainDays').html('还有'+computeTime(data.result.deadline)+'天到期')
+          }
+        }else{
+          $('.user').removeClass('active')
+          $('.content1 ul li:first-child').removeClass('active')
+        }
+      }
+    }
+  })
+  function computeTime(string){
+    let now = Date.parse(new Date())
+    let aim = Date.parse(string)
+    if(aim>now){
+      return Math.floor((aim-now)/(1000*60*60*24))
+    }
+
+  }
+</script>
+
+</html>

@@ -1,0 +1,120 @@
+.page .icon{width:.725rem;height:.75rem;}
+.page .dakai{width:.45rem;height:.8rem;}
+.page .vip{color:#FECE21;font-weight: bold;}
+.page{height:100%;background:rgb(243,243,243);}
+.page .user{
+  padding:1.35rem 0 1.8rem 1rem;
+  background:#fff;
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+.page .user .user-img{width:3rem;height:3rem;border-radius: 50%;margin-right:.8rem;}
+.page .user .user-img img{width:100%;height:100%;border-radius: 50%;}
+.page .user .user-name .vip{
+  display: none;
+}
+.page .user.active .user-name .vip{
+  display: inline-block;
+}
+.page .user .binding{
+  position: absolute;
+  right:.6rem;top:39%;
+}
+.page .user .binding button{
+  width:2rem;
+  height:.85rem;
+  border:1px solid rgb(69,92,192);
+  color:rgb(69,92,192);
+  font-size:.6rem;
+  background: #fff;
+  border-radius: .85rem;
+}
+.page .content1,
+.page .content2,
+.page .setting{
+  margin-top:.6rem;
+  background:#fff;
+}
+.page .content1 ul li,
+.page .content2 ul li,
+.page .setting ul li{
+  padding:.75rem .6rem;
+}
+.page .content1 ul li a,
+.page .content2 ul li a,
+.page .setting ul li a{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.page .content1 ul li div,
+.page .content2 ul li div,
+.page .setting ul li div{
+  display: flex;
+  align-items: center;
+}
+.page .content1 ul li .icon,
+.page .content2 ul li .icon,
+.page .setting ul li .icon{
+  margin-right:.5rem;
+}
+.page .user .binding .bangding{display: block;}
+.page .user .binding .xufei{display: none;}
+.page .user.active .binding .bangding{display: none;}
+.page .user.active .binding .xufei{display: block;}
+
+.page .content1 ul li:first-child{
+  display: none;
+}
+.page .content1 ul li:first-child .remainDays{
+  position:absolute;top:50%;right:2.4rem;
+  transform: translateY(-50%);font-size:.65rem;
+  color:#FFD694;
+}
+.page .content1 ul li.active:first-child{
+  display: block;
+}
+
+
+/* 底部tabs */
+.page .tabs {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2.4rem;
+  z-index: 2;
+  background: #fff;
+}
+
+.page .tabs ul {
+  display: flex;
+  height: 100%;
+  ;
+}
+
+.page .tabs ul li {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page .tabs ul li a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page .tabs ul li span {
+  font-size: .6rem;
+  transform: scale(0.833333);
+  line-height: .75rem;
+}
+
+.page .tabs ul li img {
+  width: 1.25rem;
+  height: 1.2rem;
+}

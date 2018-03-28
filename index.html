@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>上映广告平台</title>
+  <link rel="stylesheet" href="./vendors/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/weui.min.css">
+  <link rel="stylesheet" href="./style/common.css">
+  <link rel="stylesheet" href="./style/index.css">
+</head>
+<body>
+  <div class="page">
+    <div class="banner">
+      <img src="./images/banner.png" alt="">
+    </div>
+    <div class="publish">
+       <a href="/edit-article.html">我要发布</a>
+    </div>
+    <div class="spread">
+      <h3 class="head">推广流程</h3>
+      <ul>
+        <li>
+          <img src="./images/bianji.png" alt="">
+          <span>编辑内容</span>
+        </li>
+        <li>
+          <img src="./images/guanggao.png" alt="">
+          <span>使用图片模版</span>
+        </li>
+        <li>
+          <img src="./images/fabu.png" alt="">
+          <span>广告发布成功</span>
+        </li>
+        <li>
+          <img src="./images/zhifumoban.png" alt="">
+          <span>支付模版费</span>
+        </li>
+      </ul>
+    </div>
+    <div class="img-model">
+      <h3 class="head">图片模版</h3>
+      <div class="scroll">
+        <ul>
+        </ul>
+      </div>
+    </div>
+    <!-- <div style="height:2.4rem;width:100vw;"></div> -->
+    <footer class="tabs">
+      <ul>
+        <li>
+          <a href="/">
+            <!-- <img class="normal" src="./images/icon_shouye.png" alt="" style="width:1.3rem;height:1.15rem;"> -->
+            <img class="blue" src="./images/icon_blue_shouye.png" alt="" style="width:1.3rem;height:1.15rem;">
+             <span style="color:rgb(51,70,155);">首页</span>
+          </a>
+        </li>
+        <li>
+          <a href="/design.html">
+            <img class="normal" src="./images/icon_gray_sheji.png" alt="">
+            <!-- <img class="blue" src="./images/icon_blue_sheji.png" alt=""> -->
+            <span>定制设计</span>
+          </a>
+        </li>
+        <li>
+          <a href="/member-center.html">
+            <img class="normal" src="./images/icon_gray_wode.png" alt="" style="width:.95rem;height:1.05rem;">
+            <!-- <img class="blue" src="./images/icon_blue_wode.png" alt="" style="width:.95rem;height:1.05rem;"> -->
+            <span>我的</span>
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </div> 
+</body>
+<script src="./js/rem.js"></script>
+<script src="./vendors/js/jquery-2.1.4.js"></script>
+<script src="./vendors/js/fastclick.js"></script>
+<script src="./vendors/js/jquery-weui.js"></script>
+<script>
+    $(function() {
+      FastClick.attach(document.body);
+      $.ajax({
+        type:'GET',
+        url:"./temporary/index.json",
+        success:(data)=>{
+          if(data.code==200){
+            $.each(data.result,(i,d)=>{
+              var string = `
+                  <li>
+                    <a href="/edit-img-model.html?id=${d.id}">
+                      <img src="${d.img}" alt="">
+                      <div class="msg">
+                         <span>${d.name}</span>
+                         <span>￥${d.price}</span>
+                      </div>
+                    </a>
+                  </li>
+              `
+              $('.img-model .scroll ul').append(string)
+            })
+          }
+        }
+      })
+    });
+</script>
+</html>

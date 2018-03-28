@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>图片模版</title>
+  <link rel="stylesheet" href="./vendors/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/weui.min.css">
+  <link rel="stylesheet" href="./style/common.css">
+</head>
+<style>
+  .page{background:rgb(243,243,243);height:100%;}
+  .page .banner{background:#fff;padding:.6rem;}
+  .page .banner img{width:17.55rem;height:9.25rem;}
+  .page .title{margin-top:.6rem;background:#fff;position:relative;}
+  .page .title >div{padding:.75rem .6rem;display: flex;}
+  .page .title >div input{flex:1;}
+  .page .title >div p{font-size:.6rem;color:rgb(102,102,102);}
+  .page .title >div span{font-size:.6rem;color:rgb(102,102,102);}
+  .page .label{margin-top:.6rem;padding:.75rem .6rem;background:#fff;}
+  .page .buttons{}
+  .page .buttons button{width:11.7rem;height:1.95rem;border-radius: 1.95rem;color:#fff;margin-left:3.525rem;}
+  .page .buttons .use{background:rgb(51,70,155);margin-top:2rem;}
+  .page .buttons .preview{margin-top:.9rem;border:1px solid rgb(51,70,155);color:rgb(51,70,155);background:#fff;}
+  .popover-wrapper{position:fixed;top:0;right:0;left:0;bottom:0;display:none;background:rgba(0,0,0,1)}
+  .popover-wrapper.active{display:block;}
+  .popover-wrapper .popover{position: absolute;top:50%;left:0;right:0;width:100%;height:52.71vw;transform: translateY(-50%);background: transparent url('./images/img_zhanweitu04.png') no-repeat center;background-size:cover;}
+  .popover-wrapper .popover img{}
+</style>
+<body>
+  <div class="page">
+    <div class="banner">
+      <img alt="">
+    </div>
+    <div class="title middle-line">
+      <div>
+         <input class="main-title" type="text" placeholder="请输入主标题" maxlength="8">
+         <p><span class="use-nums">0</span>/8</p>
+      </div>
+      <div>
+        <input class="fu-title" type="text" placeholder="请输入副标题" maxlength="16">
+         <p><span class="use-nums">0</span>/16</p>
+      </div>
+    </div>
+    <div class="label">
+      <input type="text" placeholder="标签（选填）">
+    </div>
+    <div class="buttons">
+      <button class="use">应用</button>
+      <button class="preview">预览</button>
+    </div>
+  </div> 
+  <div class="popover-wrapper">
+    <div class="popover">
+      <h2></h2>
+      <h3></h3>
+    </div>
+  </div>
+</body>
+<script src="./js/rem.js"></script>
+<script src="./vendors/js/jquery-2.1.4.js"></script>
+<script src="./vendors/js/fastclick.js"></script>
+<script src="./vendors/js/jquery-weui.js"></script>
+<script>
+    $(function() {
+      FastClick.attach(document.body);
+      var id = window.location.href.match(/id=(.+)/)?window.location.href.match(/id=(.+)/)[1]:null
+      $('.title .main-title').on('input',function(){
+        let length = this.value.length
+        $(this).siblings('p').find('.use-nums').html(length)
+        $('.popover h2').html(this.value)
+      })
+      $('.title .fu-title').on('input',function(){
+        let length = this.value.length
+        $(this).siblings('p').find('.use-nums').html(length)
+        $('.popover h3').html(this.value)
+      })
+      //预览
+      $('.buttons .preview').on('click',function(){
+        $('.popover-wrapper').addClass('active')
+      })
+      $('.popover-wrapper').on('click',function(){
+         $(this).toggleClass('active')
+      })
+      // 应用
+      $('.buttons .use').on('click',apply)
+      getModelMsg()
+      // 根据id获取模版信息
+      function getModelMsg(){
+       $.ajax({
+        type:'GET',
+        url:'./temporary/edit-img-model.json?id='+id,
+        success:(data)=>{
+          if(data.code==200){
+            //数据库会帮你查询到符合的。
+            data.result.forEach(function(item){
+              if(item.id===id){
+                $('.banner img').prop('src',item.img)
+                modelType(item.type,'.popover')//模版的类型
+              }
+            })
+          }
+        }
+      })
+      }
+      function modelType(option,container){
+        let {align,color,size} = option
+        $(container+">h2").css({
+          "text-align":align.split(' ')[0],
+          "color":color.split(' ')[0],
+          "font-size":size.split(' ')[0]+'rem'
+        })
+        $(container+">h3").css({
+          "text-align":align.split(' ')[1],
+          "color":color.split(' ')[1],
+          "font-size":size.split(' ')[1]+'rem'
+        })
+      }
+      function apply(){
+        window.location.href = './edit-article.html?model='+id//在编辑文章新建一个模版的item
+      }
+    });
+</script>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>上映广告平台</title>
+  <link rel="stylesheet" href="./vendors/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./vendors/css/weui.min.css">
+  <link rel="stylesheet" href="./style/common.css">
+  <link rel="stylesheet" href="./style/design.css">
+</head>
+<body>
+  <div class="page">
+    <div class="procedure">
+      <h3>定制流程</h3> 
+      <ul>
+          <li>
+            <img src="./images/tixuqiu.png" alt="">
+            <span>提需求</span>
+          </li>
+          <li>
+            <img src="./images/fukuan.png" alt="">
+            <span>确认付款</span>
+          </li>
+          <li>
+            <img src="./images/jiaofu.png" alt="">
+            <span>交付源文件图片</span>
+          </li>
+          <li>
+            <img src="./images/dingdanwanchneg.png" alt="">
+            <span>订单完成</span>
+          </li>
+      </ul>
+    </div>
+    <div class="question">
+      <div class="msg">
+        <span>常见问题</span>
+        <a href="/more-question.html"><span style="color:rgb(102,102,102);">更多</span></a>
+      </div>
+      <ul>
+        <li class="clearfix bottom-line">
+          <p class="head">你们的定制设计有哪些？</p>
+          <p class="answer">您好，目前定制设计支持Banner图/物料设计等</p>
+        </li>
+        <li class="bottom-line">
+          <p class="head">是如何收费？</p>
+          <p class="answer">您好，定制设计统一价50元，支持微信支付。</p>
+        </li>
+        <li>
+          <p class="head">不满意可以再次调整吗？</p>
+          <p class="answer">您好，设计团队严格按照需求执行</p>
+        </li>
+      </ul>
+    </div>
+    <div class="submit-need">
+      <button>提需求</button>
+    </div>
+    <div style="height:2.4rem;width:100vw;"></div>
+    <footer class="tabs">
+      <ul>
+        <li>
+          <a href="/">
+           <img class="normal" src="./images/icon_shouye.png" alt="" style="width:1.3rem;height:1.15rem;">
+           <!-- <img class="blue" src="./images/icon_blue_shouye.png" alt="" style="width:1.3rem;height:1.15rem;"> -->
+             <span>首页</span>
+          </a>
+        </li>
+        <li>
+          <a href="/design.html">
+            <!-- <img class="normal" src="./images/icon_gray_sheji.png" alt=""> -->
+            <img class="blue" src="./images/icon_blue_sheji.png" alt="">
+            <span style="color:rgb(51,70,155);">定制设计</span>
+          </a>
+        </li>
+        <li>
+          <a href="/member-center.html">
+            <img class="normal" src="./images/icon_gray_wode.png" alt="" style="width:.95rem;height:1.05rem;">
+            <!-- <img class="blue" src="./images/icon_blue_wode.png" alt="" style="width:.95rem;height:1.05rem;"> -->
+            <span>我的</span>
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </div> 
+</body>
+<script src="./js/rem.js"></script>
+<script src="./vendors/js/jquery-2.1.4.js"></script>
+<script src="./vendors/js/fastclick.js"></script>
+<script src="./vendors/js/jquery-weui.js"></script>
+<script>
+    $(function() {
+      FastClick.attach(document.body);
+      $('.submit-need button').on('click',function(){window.location.href = './submit-requirement.html'})
+    });
+</script>
+</html>

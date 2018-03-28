@@ -1,0 +1,123 @@
+.clearfix::before{
+  content:'';
+  display: table;
+}
+.bottom-line::after{
+  content:'';
+  display: block;
+  position: absolute;
+  left:0;right:0;bottom:0;
+  height:1px;background:#999;
+}
+body{
+  overflow-x: hidden;
+}
+.page{
+  height:100%;
+  overflow-x: hidden;
+  background:rgb(243,243,243);
+  padding:.6rem .65rem 0;
+}
+.page .procedure{
+  background:#fff;
+  border-radius: .5rem;
+}
+.page .procedure h3{
+  font-family:"PingFang-SC-Medium";
+  font-size:.75rem;
+  padding-top:1rem;
+  padding-left:.6rem;
+}
+.page .procedure ul{
+  display: flex;
+  justify-content: space-around;
+}
+.page .procedure ul span{
+  font-size:.65rem;
+}
+.page .procedure ul li{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top:.8rem;
+  margin-bottom:1.15rem;
+}
+.page .procedure ul img{
+  width:2.35rem;
+  height:2.35rem;
+  margin-bottom:.4rem;
+}
+.page .question{}
+.page .question .msg{
+  display: flex;
+  justify-content: space-between;
+  padding:.425rem .65rem;
+}
+.page .question .msg span{
+  font-size:.7rem;
+}
+.page .question ul{
+  padding:0 .6rem;
+  background:#fff;
+  border-radius: .5rem;
+  padding-bottom:0.5rem;
+}
+.page .question ul li{
+  padding-bottom:.55rem;
+  position: relative;
+}
+.page .question li .head{
+  font-size:.75rem;
+  color:rgb(51,70,155);
+  margin-top:.85rem;
+  margin-bottom:.4rem;
+}
+.page .question li .answer{
+  font-size:.7rem;
+  color:rgb(102,102,102);
+}
+.page .submit-need{}
+.page .submit-need button{
+  width:14.95rem;
+  height:1.95rem;
+  border:none;
+  border-radius: 1.95rem;
+  color:#fff;
+  background:rgb(51,70,155);
+  margin:.6rem 1.3rem;
+  font-size:.8rem;
+  outline:none;
+}
+.page .tabs{
+  position:fixed;
+  bottom:0;
+  left:0;right:0;
+  height:2.4rem;
+  z-index:2;
+  background:#fff;
+}
+.page .tabs ul{
+  display: flex;
+  height:100%;;
+}
+.page .tabs ul li{
+  flex:1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page .tabs ul li a{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.page .tabs ul li span{
+  font-size:.6rem;
+  transform: scale(0.833333);
+  line-height: .75rem;
+}
+.page .tabs ul li img{
+  width:1.25rem;
+  height:1.2rem;
+}
